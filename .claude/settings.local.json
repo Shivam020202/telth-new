@@ -1,0 +1,24 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(mkdir:*)",
+      "Bash(npm install)",
+      "Bash(npm start)",
+      "Bash(npm run build:*)",
+      "Bash(set PORT=3001)",
+      "Bash(npm test:*)",
+      "Bash(npx tsc:*)",
+      "Bash(node:*)",
+      "Bash(timeout 60 npm run build)",
+      "Bash(grep:*)",
+      "Bash(npm run start:*)",
+      "Bash(timeout 30 npm start)",
+      "Bash(npx eslint:*)",
+      "Bash(npm update:*)",
+      "Bash(npm install:*)",
+      "Bash(npm view:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

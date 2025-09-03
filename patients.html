@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Telth - Fast-Forward Your Health</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#eef2ff',
+                            100: '#e0e7ff',
+                            500: '#6366f1',
+                            600: '#4f46e5',
+                            700: '#4338ca',
+                            800: '#3730a3',
+                            900: '#312e81'
+                        },
+                        secondary: {
+                            50: '#faf5ff',
+                            100: '#f3e8ff',
+                            500: '#a855f7',
+                            600: '#9333ea',
+                            700: '#7c3aed',
+                            800: '#6b21a8',
+                            900: '#581c87'
+                        }
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'fade-in': 'fadeIn 0.8s ease-out',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-10px)' }
+                        },
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .section-divider {
+            position: relative;
+            height: 50px;
+            margin-top: -50px;
+            z-index: 10;
+        }
+
+        .section-divider.wave {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z' fill='%23ffffff'/%3E%3C/svg%3E");
+            background-size: cover;
+        }
+
+        .section-divider.curve {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M600,112.77C268.63,112.77,0,65.52,0,7.23V120H1200V7.23C1200,65.52,931.37,112.77,600,112.77Z' fill='%23ffffff'/%3E%3C/svg%3E");
+            background-size: cover;
+        }
+
+        .section-divider.triangle {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M1200 0L0 0 598.97 114.72 1200 0z' fill='%23ffffff'/%3E%3C/svg%3E");
+            background-size: cover;
+        }
+
+        .card-shadow {
+            box-shadow: 0 10px 30px -5px rgba(79, 70, 229, 0.1);
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .testimonial-slider {
+            overflow: hidden;
+            position: relative;
+        }
+
+        .testimonial-track {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .testimonial-slide {
+            flex: 0 0 100%;
+        }
+
+        .gallery-slider {
+            overflow: hidden;
+            position: relative;
+        }
+
+        .gallery-track {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .gallery-slide {
+            flex: 0 0 100%;
+        }
+    </style>
+</head>
+
+<body class="bg-white text-gray-900 overflow-x-hidden">
+
+    <!-- Hero Section -->
+    <section class="py-12 bg-gradient-to-br from-primary-50 via-white to-secondary-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-8 items-center">
+                <div class="space-y-5">
+                    <div class="space-y-3">
+                        <h1 class="text-4xl lg:text-5xl font-bold text-gray-900 leading-tight">
+                            Fast-Forward Your Health
+                            <span
+                                class="text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-secondary-600">
+                                15 Days of Care in 15 Minutes
+                            </span>
+                        </h1>
+                        <p class="text-lg text-gray-600 leading-relaxed">
+                            Healthcare should revolve around you—simple, accessible, and personalized. Telth's connected
+                            care platform brings expert support, smart tools, and home-first solutions together in one
+                            seamless experience.
+                        </p>
+                    </div>
+
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <button
+                            class="bg-primary-600 text-white px-6 py-3 rounded-xl text-lg font-semibold hover:bg-primary-700 transition-colors">
+                            Start Your Journey
+                        </button>
+                        <button
+                            class="border-2 border-primary-600 text-primary-600 px-6 py-3 rounded-xl text-lg font-semibold hover:bg-primary-50 transition-colors">
+                            Learn More
+                        </button>
+                    </div>
+                </div>
+
+                <div class="relative">
+                    <div class="relative">
+                        <!-- Main Image -->
+                        <img src="/placeholder.svg?height=500&width=500" alt="Telth Healthcare Platform"
+                            class="w-full h-auto rounded-2xl shadow-xl">
+
+                        <!-- Floating Stats Cards -->
+                        <div class="absolute -top-4 -left-4 bg-white rounded-xl shadow-lg p-3 animate-float">
+                            <div class="text-xl font-bold text-primary-600">75%</div>
+                            <div class="text-xs text-gray-600">Better Care</div>
+                        </div>
+
+                        <div class="absolute -bottom-4 -right-4 bg-white rounded-xl shadow-lg p-3 animate-float"
+                            style="animation-delay: 1s;">
+                            <div class="text-xl font-bold text-secondary-600">24/7</div>
+                            <div class="text-xs text-gray-600">Support</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Overview -->
+    <section class="py-12 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-10">
+                <h2 class="text-3xl font-bold text-gray-900 mb-3">Comprehensive Care Solutions</h2>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                    Powered by AI and real-time data, our platform adapts to your unique needs, offering proactive
+                    insights, timely alerts, and personalized wellness guidance.
+                </p>
+            </div>
+
+            <div class="feature-grid">
+                <div class="bg-primary-50 p-6 rounded-xl card-shadow">
+                    <div class="w-12 h-12 bg-primary-600 rounded-lg flex items-center justify-center mb-4">
+                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-bold text-gray-900 mb-2">Personalized Care Plans</h3>
+                    <p class="text-gray-600">Dedicated wellness advisors create dynamic care plans tailored to your
+                        medical history, lifestyle, and goals.</p>
+                </div>
+
+                <div class="bg-secondary-50 p-6 rounded-xl card-shadow">
+                    <div class="w-12 h-12 bg-secondary-600 rounded-lg flex items-center justify-center mb-4">
+                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-bold text-gray-900 mb-2">Telth App</h3>
+                    <p class="text-gray-600">Your personal health command center for appointments, test results,
+                        medications, and care team communication.</p>
+                </div>
+
+                <div class="bg-primary-50 p-6 rounded-xl card-shadow">
+                    <div class="w-12 h-12 bg-primary-600 rounded-lg flex items-center justify-center mb-4">
+                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6">
+                            </path>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-bold text-gray-900 mb-2">Home Visits</h3>
+                    <p class="text-gray-600">Care managers provide personalized attention with routine check-ups and
+                        diagnostics at your home.</p>
+                </div>
+
+                <div class="bg-secondary-50 p-6 rounded-xl card-shadow">
+                    <div class="w-12 h-12 bg-secondary-600 rounded-lg flex items-center justify-center mb-4">
+                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-bold text-gray-900 mb-2">Continuous Monitoring</h3>
+                    <p class="text-gray-600">Smart wearables track vital signs 24/7, feeding real-time data to your care
+                        team for proactive interventions.</p>
+                </div>
+
+                <div class="bg-primary-50 p-6 rounded-xl card-shadow">
+                    <div class="w-12 h-12 bg-primary-600 rounded-lg flex items-center justify-center mb-4">
+                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z">
+                            </path>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-bold text-gray-900 mb-2">Smart Payments</h3>
+                    <p class="text-gray-600">Telth Visa Pay offers seamless transactions with built-in savings and
+                        tap-to-pay functionality.</p>
+                </div>
+
+                <div class="bg-secondary-50 p-6 rounded-xl card-shadow">
+                    <div class="w-12 h-12 bg-secondary-600 rounded-lg flex items-center justify-center mb-4">
+                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v4a2 2 0 01-2 2h-2a2 2 0 01-2-2z">
+                            </path>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-bold text-gray-900 mb-2">AI-Powered Insights</h3>
+                    <p class="text-gray-600">Advanced analytics provide personalized health insights and early detection
+                        capabilities.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Telth App Showcase -->
+    <section class="py-12 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-10 items-center">
+                <div class="space-y-5">
+                    <div class="space-y-3">
+                        <h2 class="text-3xl font-bold text-gray-900">
+                            Your Personal Health Command Center
+                        </h2>
+                        <p class="text-lg text-gray-600">
+                            Healthcare at your fingertips means less hassle and more control. The Telth App acts as your
+                            health command center, letting you handle everything from scheduling to care updates without
+                            ever leaving your home.
+                        </p>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="flex items-start space-x-3">
+                            <div
+                                class="w-8 h-8 bg-primary-600 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                                <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M5 13l4 4L19 7"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-900">Instant Appointments</h4>
+                                <p class="text-sm text-gray-600">Book, reschedule, or cancel instantly</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start space-x-3">
+                            <div
+                                class="w-8 h-8 bg-primary-600 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                                <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M5 13l4 4L19 7"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-900">Real-time Data</h4>
+                                <p class="text-sm text-gray-600">Access test results securely</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start space-x-3">
+                            <div
+                                class="w-8 h-8 bg-primary-600 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                                <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M5 13l4 4L19 7"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-900">24/7 Care Team</h4>
+                                <p class="text-sm text-gray-600">Chat or call your advisor anytime</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start space-x-3">
+                            <div
+                                class="w-8 h-8 bg-primary-600 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                                <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M5 13l4 4L19 7"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-900">Smart Reminders</h4>
+                                <p class="text-sm text-gray-600">Medication and wellness alerts</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button
+                        class="bg-primary-600 text-white px-6 py-3 rounded-xl text-lg font-semibold hover:bg-primary-700 transition-colors">
+                        Download the App
+                    </button>
+                </div>
+
+                <div class="relative">
+                    <img src="/placeholder.svg?height=600&width=300" alt="Telth Mobile App Interface"
+                        class="w-full max-w-xs mx-auto h-auto rounded-2xl shadow-xl">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Detailed Services -->
+    <section class="py-12 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Service 1: Personalized Care -->
+            <div class="mb-12">
+                <div class="grid lg:grid-cols-2 gap-8 items-center">
+                    <div class="space-y-4">
+                        <div
+                            class="inline-flex items-center px-4 py-2 bg-primary-100 text-primary-800 rounded-full text-sm font-semibold">
+                            01. Personalized Care Plans
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-900">
+                            Dedicated Wellness Advisors & Care Managers
+                        </h3>
+                        <p class="text-lg text-gray-600">
+                            Your health is very important, so your care should be too. Telth creates personalized Care
+                            Plans combining your medical history, lifestyle, and goals, supported by continuous
+                            monitoring and expert guidance.
+                        </p>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="bg-gray-50 p-4 rounded-lg">
+                                <h4 class="font-semibold text-gray-900 mb-1">70% improvement</h4>
+                                <p class="text-sm text-gray-600">in medication adherence and care plan compliance</p>
+                            </div>
+                            <div class="bg-gray-50 p-4 rounded-lg">
+                                <h4 class="font-semibold text-gray-900 mb-1">Early detection</h4>
+                                <p class="text-sm text-gray-600">reduces emergency visits and hospitalizations</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="relative">
+                        <img src="/placeholder.svg?height=400&width=500" alt="Personalized Care Plans"
+                            class="w-full h-auto rounded-xl shadow-lg">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Service 2: Home Visits -->
+            <div class="mb-12">
+                <div class="grid lg:grid-cols-2 gap-8 items-center">
+                    <div class="relative order-2 lg:order-1">
+                        <img src="/placeholder.svg?height=400&width=500" alt="Care Manager Home Visits"
+                            class="w-full h-auto rounded-xl shadow-lg">
+                    </div>
+                    <div class="space-y-4 order-1 lg:order-2">
+                        <div
+                            class="inline-flex items-center px-4 py-2 bg-secondary-100 text-secondary-800 rounded-full text-sm font-semibold">
+                            02. Home Visits
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-900">
+                            Care Manager Home Visits for At-Home Wellness
+                        </h3>
+                        <p class="text-lg text-gray-600">
+                            When you prefer personalized attention without travel, your Care Manager comes to you. From
+                            routine check-ups and diagnostics to consultations and medicine delivery, we bring quality
+                            care right to your home.
+                        </p>
+                        <div class="space-y-2">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-2 h-2 bg-secondary-600 rounded-full"></div>
+                                <span class="text-gray-700">Scheduled home visits tailored to your Care Plan
+                                    needs</span>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <div class="w-2 h-2 bg-secondary-600 rounded-full"></div>
+                                <span class="text-gray-700">On-site collection of vitals and sample diagnostics</span>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <div class="w-2 h-2 bg-secondary-600 rounded-full"></div>
+                                <span class="text-gray-700">Direct coordination with your wellness advisor</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Service 3: Wearables -->
+            <div class="mb-12">
+                <div class="grid lg:grid-cols-2 gap-8 items-center">
+                    <div class="space-y-4">
+                        <div
+                            class="inline-flex items-center px-4 py-2 bg-primary-100 text-primary-800 rounded-full text-sm font-semibold">
+                            03. Continuous Monitoring
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-900">
+                            Wearables & Continuous Health Monitoring
+                        </h3>
+                        <p class="text-lg text-gray-600">
+                            Stay connected to your health 24/7 with smart wearables that track vital signs, activity,
+                            sleep, and more—feeding real-time data to your care team for proactive adjustments and
+                            timely interventions.
+                        </p>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="bg-primary-50 p-4 rounded-lg text-center">
+                                <div class="text-2xl font-bold text-primary-600">40%</div>
+                                <div class="text-sm text-gray-600">reduction in hospital readmissions</div>
+                            </div>
+                            <div class="bg-primary-50 p-4 rounded-lg text-center">
+                                <div class="text-2xl font-bold text-primary-600">24/7</div>
+                                <div class="text-sm text-gray-600">continuous health monitoring</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="relative">
+                        <img src="/placeholder.svg?height=400&width=500" alt="Wearables and Monitoring"
+                            class="w-full h-auto rounded-xl shadow-lg">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Service 4: Payment System -->
+            <div>
+                <div class="grid lg:grid-cols-2 gap-8 items-center">
+                    <div class="relative order-2 lg:order-1">
+                        <img src="/placeholder.svg?height=400&width=500" alt="Telth Visa Pay"
+                            class="w-full h-auto rounded-xl shadow-lg">
+                    </div>
+                    <div class="space-y-4 order-1 lg:order-2">
+                        <div
+                            class="inline-flex items-center px-4 py-2 bg-secondary-100 text-secondary-800 rounded-full text-sm font-semibold">
+                            04. Smart Payments
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-900">
+                            Telth Visa Pay: Smart Payments with Built-In Savings
+                        </h3>
+                        <p class="text-lg text-gray-600">
+                            Make seamless health payments using your wearable or phone—whether at home, a Smart Care
+                            Hub, or a partner hospital—and grow your savings as you go.
+                        </p>
+                        <div class="space-y-3">
+                            <div class="bg-secondary-50 p-4 rounded-lg">
+                                <h4 class="font-semibold text-gray-900 mb-1">Cashless Transactions</h4>
+                                <p class="text-sm text-gray-600">Friction-free payments across the Telth ecosystem</p>
+                            </div>
+                            <div class="bg-secondary-50 p-4 rounded-lg">
+                                <h4 class="font-semibold text-gray-900 mb-1">Built-in Savings</h4>
+                                <p class="text-sm text-gray-600">Automatic allocation to FDs, digital gold, and more</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Impact Statistics -->
+    <section class="py-12 bg-primary-600 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-8">
+                <h2 class="text-3xl font-bold mb-3">Our Impact at a Glance</h2>
+                <p class="text-lg text-primary-100 max-w-3xl mx-auto">
+                    Real results from our comprehensive healthcare platform
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="text-center bg-white bg-opacity-10 p-4 rounded-xl">
+                    <div class="text-4xl font-bold mb-1">75%</div>
+                    <div class="text-primary-100">of patients report greater convenience managing care</div>
+                </div>
+                <div class="text-center bg-white bg-opacity-10 p-4 rounded-xl">
+                    <div class="text-4xl font-bold mb-1">50%</div>
+                    <div class="text-primary-100">faster response by Care Managers</div>
+                </div>
+                <div class="text-center bg-white bg-opacity-10 p-4 rounded-xl">
+                    <div class="text-4xl font-bold mb-1">3X</div>
+                    <div class="text-primary-100">increase in patient engagement</div>
+                </div>
+                <div class="text-center bg-white bg-opacity-10 p-4 rounded-xl">
+                    <div class="text-4xl font-bold mb-1">60%</div>
+                    <div class="text-primary-100">fewer emergency visits</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Slider -->
+    <section class="py-12 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-8">
+                <h2 class="text-3xl font-bold text-gray-900 mb-3">What Our Patients Say</h2>
+                <p class="text-lg text-gray-600">Real experiences from people who've transformed their health journey
+                </p>
+            </div>
+
+            <div class="relative">
+                <div class="testimonial-slider">
+                    <div class="testimonial-track">
+                        <div class="testimonial-slide p-2">
+                            <div class="bg-white p-6 rounded-xl shadow-lg max-w-4xl mx-auto">
+                                <div class="flex items-center mb-4">
+                                    <img src="/placeholder.svg?height=60&width=60" alt="Patient"
+                                        class="w-12 h-12 rounded-full mr-4">
+                                    <div>
+                                        <h4 class="font-semibold text-gray-900">Sarah Johnson</h4>
+                                        <p class="text-sm text-gray-600">Cardiac Care Patient</p>
+                                    </div>
+                                </div>
+                                <p class="text-gray-700 italic">
+                                    "The Telth platform has completely transformed how I manage my heart condition. My
+                                    care manager visits regularly, and the app keeps me on track with medications. I
+                                    feel more in control of my health than ever before."
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="testimonial-slide p-2">
+                            <div class="bg-white p-6 rounded-xl shadow-lg max-w-4xl mx-auto">
+                                <div class="flex items-center mb-4">
+                                    <img src="/placeholder.svg?height=60&width=60" alt="Patient"
+                                        class="w-12 h-12 rounded-full mr-4">
+                                    <div>
+                                        <h4 class="font-semibold text-gray-900">Robert Chen</h4>
+                                        <p class="text-sm text-gray-600">Diabetes Management</p>
+                                    </div>
+                                </div>
+                                <p class="text-gray-700 italic">
+                                    "The continuous monitoring through my wearable device caught a concerning blood
+                                    sugar spike before I even felt symptoms. The immediate response from my care team
+                                    prevented a potential emergency."
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="testimonial-slide p-2">
+                            <div class="bg-white p-6 rounded-xl shadow-lg max-w-4xl mx-auto">
+                                <div class="flex items-center mb-4">
+                                    <img src="/placeholder.svg?height=60&width=60" alt="Patient"
+                                        class="w-12 h-12 rounded-full mr-4">
+                                    <div>
+                                        <h4 class="font-semibold text-gray-900">Maria Rodriguez</h4>
+                                        <p class="text-sm text-gray-600">Wellness Program</p>
+                                    </div>
+                                </div>
+                                <p class="text-gray-700 italic">
+                                    "Having my wellness advisor available 24/7 through the app gives me such peace of
+                                    mind. The personalized care plan has helped me achieve health goals I never thought
+                                    possible."
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <button
+                    class="testimonial-prev absolute left-2 top-1/2 transform -translate-y-1/2 bg-white rounded-full p-2 shadow-lg">
+                    <svg class="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7">
+                        </path>
+                    </svg>
+                </button>
+                <button
+                    class="testimonial-next absolute right-2 top-1/2 transform -translate-y-1/2 bg-white rounded-full p-2 shadow-lg">
+                    <svg class="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Image Gallery Slider -->
+    <section class="py-12 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-8">
+                <h2 class="text-3xl font-bold text-gray-900 mb-3">Experience Healthcare Delivered to You</h2>
+                <p class="text-lg text-gray-600">See how our integrated ecosystem works seamlessly together</p>
+            </div>
+
+            <div class="relative">
+                <div class="gallery-slider overflow-hidden rounded-xl">
+                    <div class="gallery-track">
+                        <div class="gallery-slide">
+                            <img src="/placeholder.svg?height=400&width=800" alt="Integrated Healthcare Ecosystem"
+                                class="w-full h-72 object-cover">
+                        </div>
+                        <div class="gallery-slide">
+                            <img src="/placeholder.svg?height=400&width=800" alt="Care Manager Home Visit"
+                                class="w-full h-72 object-cover">
+                        </div>
+                        <div class="gallery-slide">
+                            <img src="/placeholder.svg?height=400&width=800" alt="Mobile App Communication"
+                                class="w-full h-72 object-cover">
+                        </div>
+                        <div class="gallery-slide">
+                            <img src="/placeholder.svg?height=400&width=800" alt="Wearable Health Monitoring"
+                                class="w-full h-72 object-cover">
+                        </div>
+                    </div>
+                </div>
+
+                <button
+                    class="gallery-prev absolute left-2 top-1/2 transform -translate-y-1/2 bg-white/90 rounded-full p-2 shadow-lg">
+                    <svg class="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7">
+                        </path>
+                    </svg>
+                </button>
+                <button
+                    class="gallery-next absolute right-2 top-1/2 transform -translate-y-1/2 bg-white/90 rounded-full p-2 shadow-lg">
+                    <svg class="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                    </svg>
+                </button>
+
+                <div class="gallery-dots flex justify-center mt-4 space-x-2">
+                    <button class="gallery-dot w-2 h-2 rounded-full bg-primary-600"></button>
+                    <button class="gallery-dot w-2 h-2 rounded-full bg-gray-300"></button>
+                    <button class="gallery-dot w-2 h-2 rounded-full bg-gray-300"></button>
+                    <button class="gallery-dot w-2 h-2 rounded-full bg-gray-300"></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-12 bg-gradient-to-r from-primary-600 to-secondary-600 text-white">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-3xl font-bold mb-4">Transform Your Health Journey with Telth</h2>
+            <p class="text-lg mb-6 text-primary-100">
+                Healthcare designed around your needs, schedule, and comfort—empowering you to live healthier,
+                stress-free, and fully supported.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <button
+                    class="bg-white text-primary-600 px-6 py-3 rounded-xl text-lg font-semibold hover:bg-gray-100 transition-colors">
+                    Start Your Journey Today
+                </button>
+                <button
+                    class="border-2 border-white text-white px-6 py-3 rounded-xl text-lg font-semibold hover:bg-white/10 transition-colors">
+                    Schedule a Consultation
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Testimonial Slider
+        let testimonialCurrentSlide = 0;
+        const testimonialSlides = document.querySelectorAll('.testimonial-slide');
+        const testimonialTrack = document.querySelector('.testimonial-track');
+        const testimonialPrevBtn = document.querySelector('.testimonial-prev');
+        const testimonialNextBtn = document.querySelector('.testimonial-next');
+
+        function updateTestimonialSlider() {
+            const translateX = -testimonialCurrentSlide * 100;
+            testimonialTrack.style.transform = `translateX(${translateX}%)`;
+        }
+
+        testimonialNextBtn.addEventListener('click', () => {
+            testimonialCurrentSlide = (testimonialCurrentSlide + 1) % testimonialSlides.length;
+            updateTestimonialSlider();
+        });
+
+        testimonialPrevBtn.addEventListener('click', () => {
+            testimonialCurrentSlide = (testimonialCurrentSlide - 1 + testimonialSlides.length) % testimonialSlides.length;
+            updateTestimonialSlider();
+        });
+
+        // Auto-advance testimonials
+        setInterval(() => {
+            testimonialCurrentSlide = (testimonialCurrentSlide + 1) % testimonialSlides.length;
+            updateTestimonialSlider();
+        }, 5000);
+
+        // Gallery Slider
+        let galleryCurrentSlide = 0;
+        const gallerySlides = document.querySelectorAll('.gallery-slide');
+        const galleryTrack = document.querySelector('.gallery-track');
+        const galleryPrevBtn = document.querySelector('.gallery-prev');
+        const galleryNextBtn = document.querySelector('.gallery-next');
+        const galleryDots = document.querySelectorAll('.gallery-dot');
+
+        function updateGallerySlider() {
+            const translateX = -galleryCurrentSlide * 100;
+            galleryTrack.style.transform = `translateX(${translateX}%)`;
+
+            // Update dots
+            galleryDots.forEach((dot, index) => {
+                if (index === galleryCurrentSlide) {
+                    dot.classList.remove('bg-gray-300');
+                    dot.classList.add('bg-primary-600');
+                } else {
+                    dot.classList.remove('bg-primary-600');
+                    dot.classList.add('bg-gray-300');
+                }
+            });
+        }
+
+        galleryNextBtn.addEventListener('click', () => {
+            galleryCurrentSlide = (galleryCurrentSlide + 1) % gallerySlides.length;
+            updateGallerySlider();
+        });
+
+        galleryPrevBtn.addEventListener('click', () => {
+            galleryCurrentSlide = (galleryCurrentSlide - 1 + gallerySlides.length) % gallerySlides.length;
+            updateGallerySlider();
+        });
+
+        // Dot navigation
+        galleryDots.forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                galleryCurrentSlide = index;
+                updateGallerySlider();
+            });
+        });
+
+        // Auto-advance gallery
+        setInterval(() => {
+            galleryCurrentSlide = (galleryCurrentSlide + 1) % gallerySlides.length;
+            updateGallerySlider();
+        }, 4000);
+    </script>
+</body>
+
+</html>
